@@ -26,12 +26,8 @@ public class Main extends AbstractGame {
 			@Override
 			public void instanceGameObjects() {
 				GameObject würfelTest = new GameObject(new Vector2(0), true);
-				würfelTest.addComponent(new GameBehaviour() {
-					public void render() {
-						this.d.setColor(Color.WHITE);
-						this.d.fillRect(new Vector2(100));
-					}
-				});
+				SpriteSheet ss = new SpriteSheet("/lol.jpg", 6, 2);
+				würfelTest.addComponent(new SpriteAnimation(ss));
 				this.addGameObject(würfelTest);
 				
 			}
