@@ -5,6 +5,8 @@ import java.awt.Color;
 import engine.game.AbstractGame;
 import engine.game.GameContainer;
 import engine.gameobjects.GameObject;
+import engine.gameobjects.gamebehaviour.builtin.animation.SpriteAnimation;
+import engine.gameobjects.gamebehaviour.builtin.animation.SpriteSheet;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 import engine.scenes.Scene;
@@ -26,9 +28,10 @@ public class Main extends AbstractGame {
 			@Override
 			public void instanceGameObjects() {
 				GameObject würfelTest = new GameObject(new Vector2(0), true);
-				SpriteSheet ss = new SpriteSheet("/lol.jpg", 6, 2);
+				SpriteSheet ss = new SpriteSheet("/animationTest.png", 15, 1);
 				würfelTest.addComponent(new SpriteAnimation(ss));
 				this.addGameObject(würfelTest);
+				würfelTest.setScale(new Vector2(10));
 				
 			}
 			
