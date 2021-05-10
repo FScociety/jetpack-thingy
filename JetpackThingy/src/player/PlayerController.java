@@ -1,0 +1,60 @@
+package player;
+
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+
+import engine.game.GameContainer;
+import engine.gameobjects.gamebehaviour.type.GameBehaviour;
+import engine.math.Vector2;
+
+public class PlayerController extends GameBehaviour {
+	
+	int ceil = -200;
+	int floor = 200;
+	
+	int sizeY = 50;
+	
+	boolean ceilCollision, floorCollision;
+	
+	float velocityY = 0;
+	float forceY = 9.81f;
+	
+	public void update() {
+		
+		float posY = this.gameObject.getTransformWithCaution().position.y;
+		if (posY-sizeY/2 < ceil && this.ceilCollision == false) {
+			ceilCollision = true;
+			this.velocityY = 0;
+			this.gameObject.getTransformWithCaution().position.y = ceil + sizeY/2;
+		} else if (posY-sizeY/2 > ceil) {
+			ceilCollision = false;
+			if (posY+sizeY/2 > floor && this.floorCollision == false) {
+				floorCollision = true;
+				this.velocityY = 0;
+				this.gameObject.getTransformWithCaution().position.y = floor - sizeY/2;
+			} else if (posY+sizeY/2 < floor) {
+				floorCollision = false;
+			}
+		}
+		
+		if (!this.floorCollision) {
+			this.velocityY += (float) (this.forceY * GameContainer.dt * 20);
+		}
+		
+		if ((this.floorCollision == false && this.ceilCollision == false) || 
+			(this.floorCollision == true && this.velocityY < 0) || 
+			(this.ceilCollision == true && this.velocityY > 0)) {
+				this.gameObject.addPosition(new Vector2(0, (float) (this.velocityY * GameContainer.dt)));
+		}
+		
+		if (GameContainer.input.isKeyDown(KeyEvent.VK_SPACE) && !this.ceilCollision) {
+			this.velocityY -= (float) (this.forceY * GameContainer.dt * 50);
+		}
+	}
+	
+	public void render() {
+		this.d.setColor(Color.WHITE);
+		this.d.fillRect(new Vector2(sizeY));
+	}
+
+}
