@@ -26,7 +26,7 @@ public class ParallaxBackground extends GameBehaviour {
 			try {
 				 this.images[i] = ImageIO.read(getClass().getResourceAsStream(path + "\\l" + i + ".png"));
 			} catch (IOException e) {
-				System.err.println("Could not load the sprite with Path: " + path);
+	  			System.err.println("Could not load the sprite with Path: " + path);
 			}
 		}
 	}
@@ -38,7 +38,7 @@ public class ParallaxBackground extends GameBehaviour {
 		}
 		
 		aimX = GameContainer.input.getMousePos(true).x;
-	}
+	} 
 	
 	public void render() {
 		for (int i = 0; i < images.length; i++) {

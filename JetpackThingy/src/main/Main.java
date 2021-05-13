@@ -12,24 +12,31 @@ import engine.math.Vector2;
 import engine.scenes.Scene;
 import engine.scenes.SceneManager;
 import scenes.InGameScene;
+import scenes.UITest;
 
 public class Main extends AbstractGame {
 	
-	Scene inGame;
+	Scene inGame, UiTest;
 	
 	public static void main(String[] args) {
 		GameContainer gc = new GameContainer(new Main());	
-		gc.setSize(new Vector2(1000, 500));
+		gc.setSize(new Vector2(750, 750));
 		gc.start();
 	}
 	
 	public Main() {
 		inGame = new InGameScene();
+		
+		UiTest = new UITest();
 	}
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(inGame);
+		SceneManager.loadScene(UiTest);
+	}
+	
+	public void update() {
+		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
 	}
 
 }

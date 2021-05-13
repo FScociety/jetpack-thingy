@@ -2,6 +2,7 @@ package player;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import engine.game.GameContainer;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
@@ -29,7 +30,7 @@ public class PlayerController extends GameBehaviour {
 		} else if (posY-sizeY/2 > ceil) {
 			ceilCollision = false;
 			if (posY+sizeY/2 > floor && this.floorCollision == false) {
-				floorCollision = true;
+				floorCollision = true ;
 				this.velocityY = 0;
 				this.gameObject.getTransformWithCaution().position.y = floor - sizeY/2;
 			} else if (posY+sizeY/2 < floor) {
@@ -56,5 +57,23 @@ public class PlayerController extends GameBehaviour {
 		this.d.setColor(Color.WHITE);
 		this.d.fillRect(new Vector2(sizeY));
 	}
-
+	
+	//Schule version
+	
+	public PlayerController(String name) {
+		this.name = name;
+		PlayerController.players.add(this);
+	}
+	
+	public static ArrayList<PlayerController> players = new ArrayList<PlayerController>();
+	private String name;
+	
+	public static PlayerController getPlayer(String name) {
+		for (PlayerController pc : players) {
+			if (pc.name == name) {
+				return pc;
+			}
+		}
+		return null;
+	}
 }
