@@ -32,11 +32,16 @@ public class Main extends AbstractGame {
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(UiTest);
+		SceneManager.loadScene(inGame);
 	}
 	
 	public void update() {
-		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
+		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 4;
 	}
+	
+	//Space drücken um hochzufliegen, dann stößt man oben an eine Unsichtbare wand und unten auch.
+	//Der weiße Klotzt soll den Spieler wiederspiegeln
+	
+	//Der Hintergrund verfolgt der Maus und ist ein Test des ParallaxBackgrounds und soll danach mit der Bewegung des Spielers gekoppelt werden
 
 }

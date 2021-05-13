@@ -6,7 +6,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import engine.game.GameContainer;
+import engine.game.Window;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
+import engine.io.LocalFileLoader;
 import engine.math.Vector2;
 
 public class ParallaxBackground extends GameBehaviour {
@@ -24,7 +26,8 @@ public class ParallaxBackground extends GameBehaviour {
 		
 		for (int i = 0; i < size; i++) {
 			try {
-				 this.images[i] = ImageIO.read(getClass().getResourceAsStream(path + "\\l" + i + ".png"));
+				String loadingPath = path + "/l" + i + ".png";
+				 this.images[i] = ImageIO.read(getClass().getResourceAsStream(loadingPath));
 			} catch (IOException e) {
 	  			System.err.println("Could not load the sprite with Path: " + path);
 			}

@@ -60,7 +60,7 @@ public class PlayerController extends GameBehaviour {
 	
 	//Schule version
 	
-	public PlayerController(String name) {
+	/*public PlayerController(String name) {
 		this.name = name;
 		PlayerController.players.add(this);
 	}
@@ -75,5 +75,5 @@ public class PlayerController extends GameBehaviour {
 			}
 		}
 		return null;
-	}
+	}*/
 }
