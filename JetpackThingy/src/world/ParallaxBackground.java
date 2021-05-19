@@ -10,6 +10,7 @@ import engine.game.Window;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.io.LocalFileLoader;
 import engine.math.Vector2;
+import scenes.InGameScene;
 
 public class ParallaxBackground extends GameBehaviour {
 	
@@ -40,7 +41,10 @@ public class ParallaxBackground extends GameBehaviour {
 			offsetX[i] = aimX * (((float)i+1)/offsetX.length);
 		}
 		
-		aimX = GameContainer.input.getMousePos(true).x;
+		//Moving:
+		aimX = InGameScene.trackingPoint.getTransformWithCaution().position.x;
+		
+		
 	} 
 	
 	public void render() {

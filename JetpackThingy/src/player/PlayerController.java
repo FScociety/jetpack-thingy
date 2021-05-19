@@ -10,8 +10,7 @@ import engine.math.Vector2;
 
 public class PlayerController extends GameBehaviour {
 	
-	int ceil = -200;
-	int floor = 200;
+	public static int borders = 350;
 	
 	int sizeY = 50;
 	
@@ -23,17 +22,17 @@ public class PlayerController extends GameBehaviour {
 	public void update() {
 		
 		float posY = this.gameObject.getTransformWithCaution().position.y;
-		if (posY-sizeY/2 < ceil && this.ceilCollision == false) {
+		if (posY-sizeY/2 < -borders && this.ceilCollision == false) {
 			ceilCollision = true;
 			this.velocityY = 0;
-			this.gameObject.getTransformWithCaution().position.y = ceil + sizeY/2;
-		} else if (posY-sizeY/2 > ceil) {
+			this.gameObject.getTransformWithCaution().position.y = -borders + sizeY/2;
+		} else if (posY-sizeY/2 > -borders) {
 			ceilCollision = false;
-			if (posY+sizeY/2 > floor && this.floorCollision == false) {
+			if (posY+sizeY/2 > borders && this.floorCollision == false) {
 				floorCollision = true ;
 				this.velocityY = 0;
-				this.gameObject.getTransformWithCaution().position.y = floor - sizeY/2;
-			} else if (posY+sizeY/2 < floor) {
+				this.gameObject.getTransformWithCaution().position.y = borders - sizeY/2;
+			} else if (posY+sizeY/2 < borders) {
 				floorCollision = false;
 			}
 		}

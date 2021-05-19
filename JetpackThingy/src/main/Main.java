@@ -11,12 +11,13 @@ import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 import engine.scenes.Scene;
 import engine.scenes.SceneManager;
+import scenes.GlobalTestScene;
 import scenes.InGameScene;
 import scenes.UITest;
 
 public class Main extends AbstractGame {
 	
-	Scene inGame, UiTest;
+	Scene inGame, UiTest, globalTest;
 	
 	public static void main(String[] args) {
 		GameContainer gc = new GameContainer(new Main());	
@@ -28,15 +29,21 @@ public class Main extends AbstractGame {
 		inGame = new InGameScene();
 		
 		UiTest = new UITest();
+		
+		globalTest = new GlobalTestScene();
 	}
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(inGame);
+		SceneManager.loadScene(UiTest);
 	}
 	
 	public void update() {
-		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 4;
+		//this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
+		
+		if (GameContainer.input.isKey(KeyEvent.VK_ESCAPE)) {
+			System.exit(0);
+		}
 	}
 	
 	//Space drücken um hochzufliegen, dann stößt man oben an eine Unsichtbare wand und unten auch.
