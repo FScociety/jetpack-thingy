@@ -20,10 +20,10 @@ public class UITest extends Scene {
 
 	@Override
 	public void instanceGameObjects() {
-		GameObject boundsParent = new GameObject(new Vector2(750/2), false);
-		Bounds b = new Bounds(new Vector2(100));
+		GameObject boundsParent = new GameObject(new Vector2(0), this.defaultCameraObject);
+		System.out.println(this.defaultCameraObject);
+		Bounds b = new Bounds(new Vector2(50));
 		boundsParent.addComponent(b);
-		this.addGameObject(boundsParent);
 		
 		/*GameObject boundsChild1 = new GameObject(new Vector2(-750/2), boundsParent);
 		Bounds b2 = new Bounds(new Vector2(10));
@@ -39,3 +39,9 @@ public class UITest extends Scene {
 	}
 
 }
+
+/* TESTEN IN UNITY
+ * Wie machen die Das mit dem Parenten von UI Objekten
+ * Wenn man die Position verändert, verändert sich dann auhc die Bounds
+ * Wie geht es mit nicht UI Objekten um die Childern von UI Objekten sind?
+ */

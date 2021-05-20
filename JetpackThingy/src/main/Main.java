@@ -21,7 +21,7 @@ public class Main extends AbstractGame {
 	
 	public static void main(String[] args) {
 		GameContainer gc = new GameContainer(new Main());	
-		gc.setSize(new Vector2(750, 750));
+		gc.setSize(new Vector2(500, 500));
 		gc.start();
 	}
 	
@@ -46,8 +46,8 @@ public class Main extends AbstractGame {
 		}
 	}
 	
-	//Space drücken um hochzufliegen, dann stößt man oben an eine Unsichtbare wand und unten auch.
-	//Der weiße Klotzt soll den Spieler wiederspiegeln
+	//Space drï¿½cken um hochzufliegen, dann stï¿½ï¿½t man oben an eine Unsichtbare wand und unten auch.
+	//Der weiï¿½e Klotzt soll den Spieler wiederspiegeln
 	
 	//Der Hintergrund verfolgt der Maus und ist ein Test des ParallaxBackgrounds und soll danach mit der Bewegung des Spielers gekoppelt werden
 
