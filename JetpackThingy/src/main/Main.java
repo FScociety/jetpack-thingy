@@ -20,12 +20,14 @@ public class Main extends AbstractGame {
 	Scene inGame, UiTest, globalTest;
 	
 	public static void main(String[] args) {
-		GameContainer gc = new GameContainer(new Main());	
+		GameContainer gc = new GameContainer();	
 		gc.setSize(new Vector2(500, 500));
+		gc.setGame(new Main());
 		gc.start();
 	}
 	
 	public Main() {
+		//System.out.println(GameContainer.gc.getSize());
 		inGame = new InGameScene();
 		
 		UiTest = new UITest();

@@ -20,10 +20,11 @@ public class UITest extends Scene {
 
 	@Override
 	public void instanceGameObjects() {
-		GameObject boundsParent = new GameObject(new Vector2(0), this.defaultCameraObject);
+		GameObject boundsParent = new GameObject("boundsChild", new Vector2(200, 0), this.canvasGameObject);
 		System.out.println(this.defaultCameraObject);
-		Bounds b = new Bounds(new Vector2(50));
+		Bounds b = new Bounds(new Vector2(400, 0), new Vector2(500,500));
 		boundsParent.addComponent(b);
+		this.addGameObject(boundsParent);
 		
 		/*GameObject boundsChild1 = new GameObject(new Vector2(-750/2), boundsParent);
 		Bounds b2 = new Bounds(new Vector2(10));
