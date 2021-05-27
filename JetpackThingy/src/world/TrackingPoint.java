@@ -13,8 +13,6 @@ public class TrackingPoint extends GameBehaviour {
 		if (this.gameObject.getTransformWithCaution().position.x <= -3000) {
 			this.gameObject.setPosition(new Vector2(3000,0));
 		}
-		
-		System.out.println(this.gameObject.getTransformWithCaution().position);
 	}
 	
 	public void render() {

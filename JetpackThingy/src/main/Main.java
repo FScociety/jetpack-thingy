@@ -41,7 +41,7 @@ public class Main extends AbstractGame {
 	}
 	
 	public void update() {
-		//this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
+		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
 		
 		if (GameContainer.input.isKey(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);

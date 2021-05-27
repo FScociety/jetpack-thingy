@@ -2,12 +2,14 @@ package scenes;
 
 import java.awt.Color;
 
+import engine.game.GameContainer;
 import engine.gameobjects.GameObject;
 import engine.gameobjects.gamebehaviour.builtin.ui.ColorLabel;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 import engine.scenes.Scene;
 import player.PlayerController;
+import world.ParalaxBackground2;
 import world.ParallaxBackground;
 import world.TrackingPoint;
 
@@ -22,8 +24,9 @@ public class InGameScene extends Scene {
 
 	@Override
 	public void instanceGameObjects() {
-		GameObject background = new GameObject(new Vector2(0), true);
-		background.addComponent(new ParallaxBackground("/paralaxbackgrounds/sunshine", 7));
+		GameObject background = new GameObject(new Vector2(0, 0), true);
+		//background.addComponent(new ParallaxBackground("/paralaxbackgrounds/sunshine", 7));
+		background.addComponent(new ParalaxBackground2("/paralaxbackgrounds/sunshine", 4, new Vector2(384*4, 216*4)));
 		this.addGameObject(background);
 		
 		trackingPoint = new GameObject(new Vector2(0), true);
@@ -39,18 +42,20 @@ public class InGameScene extends Scene {
 		ceilBorder.addComponent(new GameBehaviour() {
 			public void render() {
 				this.d.setColor(Color.PINK);
-				this.d.fillRect(new Vector2(500, 50));
+				this.d.fillRect(new Vector2(5000, 50));
 			}
 		});
+		ceilBorder.viewRange = 5000;
 		this.addGameObject(ceilBorder);
 		
 		GameObject floorBorder = new GameObject(new Vector2(0, PlayerController.borders + 25), trackingPoint);
 		floorBorder.addComponent(new GameBehaviour() {
 			public void render() {
 				this.d.setColor(Color.PINK);
-				this.d.fillRect(new Vector2(500, 50));
+				this.d.fillRect(new Vector2(5000, 50));
 			}
 		});
+		floorBorder.viewRange = 5000;
 		this.addGameObject(floorBorder);
 	}
 

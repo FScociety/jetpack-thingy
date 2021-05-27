@@ -38,7 +38,7 @@ public class PlayerController extends GameBehaviour {
 		}
 		
 		if (!this.floorCollision) {
-			this.velocityY += (float) (this.forceY * GameContainer.dt * 20);
+			this.velocityY += (float) (this.forceY * GameContainer.dt * 200);
 		}
 		
 		if ((this.floorCollision == false && this.ceilCollision == false) || 
@@ -48,7 +48,7 @@ public class PlayerController extends GameBehaviour {
 		}
 		
 		if (GameContainer.input.isKeyDown(KeyEvent.VK_SPACE) && !this.ceilCollision) {
-			this.velocityY -= (float) (this.forceY * GameContainer.dt * 50);
+			this.velocityY -= (float) (this.forceY * GameContainer.dt * 400);
 		}
 	}
 	
