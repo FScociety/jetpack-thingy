@@ -1,14 +1,7 @@
 package scenes;
 
-import java.awt.Color;
-
-import engine.game.GameContainer;
 import engine.gameobjects.GameObject;
-import engine.gameobjects.gamebehaviour.Bounds;
-import engine.gameobjects.gamebehaviour.builtin.ui.Text;
-import engine.gameobjects.gamebehaviour.builtin.ui.Text2;
-import engine.gameobjects.gamebehaviour.builtin.ui.interactable.Button;
-import engine.gameobjects.gamebehaviour.type.GameBehaviour;
+import engine.gameobjects.gamebehaviour.builtin.ui.RectTransform;
 import engine.math.Vector2;
 import engine.scenes.Scene;
 
@@ -20,9 +13,9 @@ public class UITest extends Scene {
 
 	@Override
 	public void instanceGameObjects() {
-		GameObject boundsParent = new GameObject("boundsChild", new Vector2(200, 0), this.canvasGameObject);
+		GameObject boundsParent = new GameObject("boundsChild", new Vector2(100, 0), this.canvasGameObject);
 		System.out.println(this.defaultCameraObject);
-		Bounds b = new Bounds(new Vector2(400, 0), new Vector2(500,500));
+		RectTransform b = new RectTransform(new Vector2(400, 0), new Vector2(500,500));
 		boundsParent.addComponent(b);
 		this.addGameObject(boundsParent);
 		

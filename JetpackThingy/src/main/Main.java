@@ -37,7 +37,7 @@ public class Main extends AbstractGame {
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(UiTest);
+		SceneManager.loadScene(inGame);
 	}
 	
 	public void update() {
