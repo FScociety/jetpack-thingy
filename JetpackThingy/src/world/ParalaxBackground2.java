@@ -1,11 +1,13 @@
 package world;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import engine.game.GameContainer;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 
@@ -38,8 +40,8 @@ public class ParalaxBackground2 extends GameBehaviour {
 		bgl = new BackgroundLayer[size];
 		
 		for (int i = 0; i < size; i++) {
-			bgl[i] = new BackgroundLayer(imageSize.x);
-			bgl[i].start();
+			bgl[i] = new BackgroundLayer(this.d, imageSize.x);
+			bgl[i].calcSpace();
 		}
 	}
 	
@@ -51,17 +53,15 @@ public class ParalaxBackground2 extends GameBehaviour {
 	
 	public void render() {
 		for (int i = 0; i < bgl.length; i++) {
-			//System.out.println(bgl[i].backgrounds.size());
-			
-			for (int j = 0; j < bgl[i].backgrounds.size(); j++) {
-				float x = bgl[i].backgrounds.get(j);
+			bgl[i].render();
+			/*for (int j = 0; j < bgl[i].backgroundsSize; j++) {
+				float x = bgl[i].backgrounds[j];
 				
-				System.out.println(x);
+				this.d.setColor(Color.WHITE);
+				this.d.drawRect(new Vector2(x, 0), new Vector2(384*2, 384*2));
 				
-				//this.d.setColor(new Color(172, 255, 255));
-				//this.d.fillRect(new Vector2(x - ((float)bgl[i].backgrounds.size())/2*imageSize, -imageSize/2), new Vector2(imageSize+1));
-				this.d.drawImage(images[i],new Vector2(x - (bgl[i].backgrounds.size())/2*imageSize.x, -imageSize.y/2), new Vector2(imageSize.x+1, imageSize.y+1));
-			}
+				//this.d.drawImage(images[i], new Vector2(x - (bgl[i].backgrounds.size())/2*imageSize.x, -imageSize.y/2), new Vector2(imageSize.x+1, imageSize.y+1));
+			}*/
 		}
 	}
 

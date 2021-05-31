@@ -21,7 +21,7 @@ public class Main extends AbstractGame {
 	
 	public static void main(String[] args) {
 		GameContainer gc = new GameContainer();	
-		gc.setSize(new Vector2(500, 500));
+		gc.setSize(new Vector2(1500, 500));
 		gc.setGame(new Main());
 		gc.start();
 	}
