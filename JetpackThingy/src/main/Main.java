@@ -27,7 +27,6 @@ public class Main extends AbstractGame {
 	}
 	
 	public Main() {
-		//System.out.println(GameContainer.gc.getSize());
 		inGame = new InGameScene();
 		
 		UiTest = new UITest();
@@ -47,10 +46,4 @@ public class Main extends AbstractGame {
 			System.exit(0);
 		}
 	}
-	
-	//Space dr�cken um hochzufliegen, dann st��t man oben an eine Unsichtbare wand und unten auch.
-	//Der wei�e Klotzt soll den Spieler wiederspiegeln
-	
-	//Der Hintergrund verfolgt der Maus und ist ein Test des ParallaxBackgrounds und soll danach mit der Bewegung des Spielers gekoppelt werden
-
 }

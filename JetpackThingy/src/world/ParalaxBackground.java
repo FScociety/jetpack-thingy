@@ -40,7 +40,8 @@ public class ParalaxBackground extends GameBehaviour {
 		bgl = new BackgroundLayer[size];
 		
 		for (int i = 0; i < size; i++) {
-			bgl[i] = new BackgroundLayer(this.d, images);
+			BufferedImage[] testarray = {images[i]};
+			bgl[i] = new BackgroundLayer(this.d, testarray, i, size);
 			bgl[i].calcSpace();
 		}
 	}

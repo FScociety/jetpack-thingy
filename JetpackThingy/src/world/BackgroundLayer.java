@@ -21,10 +21,15 @@ public class BackgroundLayer {
 	private float maxSpace;
 	private BufferedImage images[];
 	
-	public BackgroundLayer(Drawing d, BufferedImage images[]) {
+	public float depth;
+	
+	public BackgroundLayer(Drawing d, BufferedImage images[], int depth, int depthSize) {
 		this.images = images;
 		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
 		this.d = d;
+		
+		this.depth = (float)(depth+1) / (depthSize+1);
+
 	}
 	
 	public void calcSpace() {
@@ -39,13 +44,18 @@ public class BackgroundLayer {
 	}
 	
 	public BufferedImage getNewImage() {
-		int imagesCount = this.images.length;
-		int randomImageNumber = (int) (Math.round(Math.random() * imagesCount) / imagesCount);
-		return this.images[randomImageNumber];
+		/*int imagesCount = this.images.length;
+		float randomNumber = (float) Math.random();
+		randomNumber *= imagesCount;
+		System.out.println(imagesCount);
+		return this.images[(int) randomNumber];*/
+		
+		return this.images[0];
 	}
 	
 	public void update() {
-		this.start.move((float)GameContainer.dt*1000);
+		System.out.println(this.depth);
+		this.start.move((float)GameContainer.dt*1000 * this.depth);
 	}
 	
 	public void render() {
