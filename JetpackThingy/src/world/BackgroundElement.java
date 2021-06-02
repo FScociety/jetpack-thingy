@@ -1,6 +1,7 @@
 package world;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 import engine.game.Drawing;
 import engine.math.Vector2;
@@ -8,27 +9,23 @@ import engine.math.Vector2;
 public class BackgroundElement {
 	
 	public float posX;
-	public int sizeX;
 	public BackgroundElement follower;
 	public BackgroundLayer parent;
-	public Drawing d;
+	public BufferedImage image;
 	
-	public BackgroundElement(BackgroundLayer parent, Drawing d, float posX, int sizeX, int toAdd) {
+	public BackgroundElement(BackgroundLayer parent, float posX, int toAdd) {
 		
 		this.parent = parent;
-		
-		this.sizeX = sizeX;
 		this.posX = posX;
-		this.d = d;
 		
 		if (toAdd > 0) { 
-			this.follower = new BackgroundElement(this.parent, this.d, this.posX + this.sizeX, this.sizeX, toAdd-1);
+			this.follower = new BackgroundElement(this.parent, this.posX + this.parent.imageSize.x, toAdd-1);
 		}
 	}
 	
 	public void setFollower(BackgroundElement follower) {
 		this.follower = follower;
-		this.follower.posX = this.posX + this.sizeX;
+		this.follower.posX = this.posX + this.parent.imageSize.x;
 	}
 	
 	public BackgroundElement getEnd() {
@@ -40,13 +37,16 @@ public class BackgroundElement {
 	}
 	
 	public void moveToEnd() {
+		
 		if (this.follower != null) {
 			this.parent.start = this.follower;
 		}
 		
-		BackgroundElement end = this.getEnd();
-		System.out.println("Ending posX: " + end.posX);
-		end.setFollower(this);
+		this.getEnd().setFollower(this);
+		this.follower = null;
+		
+		//Get new Image variation
+		this.image = this.parent.getNewImage();
 	}
 	
 	public void move(float moving) {
@@ -55,7 +55,7 @@ public class BackgroundElement {
 		//System.out.println(posX  + " " + this.parent.backgroundsSize * this.sizeX);
 		
 		//BAD Practise "backgroundSize * sizeX" = const. muss nich immer gerechnet werden
-		if (this.posX <= -this.parent.backgroundsSize/2 * this.sizeX) {
+		if (this.posX <= -(this.parent.backgroundsSize/2+1) * this.parent.imageSize.x) {
 			this.moveToEnd();
 		}
 		
@@ -65,11 +65,13 @@ public class BackgroundElement {
 	}
 	
 	public void render() {
-		this.d.setColor(Color.WHITE);
-		this.d.drawRect(new Vector2(posX, 0), new Vector2(sizeX));
+		/*this.parent.d.setColor(Color.WHITE);
+		this.parent.d.drawRect(new Vector2(posX, -this.parent.imageSize.y/2), this.parent.imageSize);*/
 		
-		/*if (this.follower != null) {
+		this.parent.d.drawImage(image, new Vector2(posX, -this.parent.imageSize.y/2), this.parent.imageSize);
+		
+		if (this.follower != null) {
 			this.follower.render();
-		}*/
+		}
 	}
 }

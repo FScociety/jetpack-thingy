@@ -11,7 +11,7 @@ import engine.game.GameContainer;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 
-public class ParalaxBackground2 extends GameBehaviour {
+public class ParalaxBackground extends GameBehaviour {
 	
 	private BufferedImage images[];
 	
@@ -20,13 +20,13 @@ public class ParalaxBackground2 extends GameBehaviour {
 	public Vector2 imageSize;
 	
 	
-	public ParalaxBackground2(String path, int size, Vector2 imageSize) {
+	public ParalaxBackground(String path, int size, Vector2 imageSize) {
 		this.size = size;
 		this.imageSize = imageSize;
 		
 		
-		images = new BufferedImage[5];
-		for (int i = 0; i < 4; i++) {
+		images = new BufferedImage[7];
+		for (int i = 0; i < 6; i++) {
 			try {
 				String loadingPath = path + "/l" + i + ".png";
 				 this.images[i] = ImageIO.read(getClass().getResourceAsStream(loadingPath));
@@ -40,7 +40,7 @@ public class ParalaxBackground2 extends GameBehaviour {
 		bgl = new BackgroundLayer[size];
 		
 		for (int i = 0; i < size; i++) {
-			bgl[i] = new BackgroundLayer(this.d, imageSize.x);
+			bgl[i] = new BackgroundLayer(this.d, images);
 			bgl[i].calcSpace();
 		}
 	}
