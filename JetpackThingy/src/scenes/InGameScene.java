@@ -26,7 +26,7 @@ public class InGameScene extends Scene {
 	public void instanceGameObjects() {
 		GameObject background = new GameObject(new Vector2(0, 0), true);
 		//background.addComponent(new ParallaxBackground("/paralaxbackgrounds/sunshine", 7));
-		background.addComponent(new ParalaxBackground2("/paralaxbackgrounds/sunshine", 4, new Vector2(384*2, 216*2)));
+		background.addComponent(new ParalaxBackground2("/paralaxbackgrounds/sunshine", 1, new Vector2(384*2, 216*2)));
 		this.addGameObject(background);
 		
 		trackingPoint = new GameObject(new Vector2(0), true);
