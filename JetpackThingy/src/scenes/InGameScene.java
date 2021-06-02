@@ -10,7 +10,6 @@ import engine.math.Vector2;
 import engine.scenes.Scene;
 import player.PlayerController;
 import world.ParalaxBackground;
-import world.ParallaxBackground;
 import world.TrackingPoint;
 
 public class InGameScene extends Scene {
