@@ -26,13 +26,14 @@ public class BackgroundLayer {
 	public BackgroundLayer(Drawing d, BufferedImage images[], int depth, int depthSize) {
 		this.images = images;
 		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
+		this.imageSize.multiply(5);
 		this.d = d;
 		
 		this.depth = (float)(depth+1) / (depthSize+1);
 
 	}
 	
-	public void calcSpace() {
+	public void calcSpace() {		
 		this.backgroundsSize = (int)Math.ceil(GameContainer.windowSize.x / imageSize.x / SceneManager.activeScene.defaultCamera.zoom)+3;
 		Logger.println(prefix, "Generated BackgroundLayer with size of " + this.backgroundsSize, 1);
 		start = new BackgroundElement(this, -this.backgroundsSize / 2 * this.imageSize.x, this.backgroundsSize-1);
