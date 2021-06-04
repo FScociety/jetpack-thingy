@@ -8,6 +8,7 @@ import engine.game.GameContainer;
 import engine.io.Logger;
 import engine.math.Vector2;
 import engine.scenes.SceneManager;
+import player.PlayerController;
 
 public class BackgroundLayer {
 	
@@ -26,10 +27,11 @@ public class BackgroundLayer {
 	public BackgroundLayer(Drawing d, BufferedImage images[], int depth, int depthSize) {
 		this.images = images;
 		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
+		this.imageSize.multiply(5);
 		this.d = d;
 		
 		this.depth = (float)(depth+1) / (depthSize+1);
-
+		
 	}
 	
 	public void calcSpace() {
@@ -54,8 +56,7 @@ public class BackgroundLayer {
 	}
 	
 	public void update() {
-		System.out.println(this.depth);
-		this.start.move((float)GameContainer.dt*1000 * this.depth);
+		this.start.move((float)GameContainer.dt*1000 * this.depth * PlayerController.velX);
 	}
 	
 	public void render() {

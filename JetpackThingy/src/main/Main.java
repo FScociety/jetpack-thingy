@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import engine.game.AbstractGame;
@@ -36,7 +38,9 @@ public class Main extends AbstractGame {
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(UiTest);
+		SceneManager.loadScene(inGame);
+        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+		GameContainer.window.frame.setSize(size);
 	}
 	
 	public void update() {
