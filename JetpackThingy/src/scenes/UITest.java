@@ -13,11 +13,17 @@ public class UITest extends Scene {
 
 	@Override
 	public void instanceGameObjects() {
-		GameObject boundsParent = new GameObject("boundsChild", new Vector2(100, 0), this.canvasGameObject);
-		System.out.println(this.defaultCameraObject);
-		RectTransform b = new RectTransform(new Vector2(400, 0), new Vector2(500,500));
-		boundsParent.addComponent(b);
-		this.addGameObject(boundsParent);
+		GameObject child1 = new GameObject("boundsChil1", new Vector2(0, 0), this.canvasGameObject);
+		RectTransform b = new RectTransform(new Vector2(-100, -100), new Vector2(100, 100));
+		//RectTransform b = new RectTransform(new Vector2(25));
+		child1.addComponent(b);
+		this.addGameObject(child1);
+		
+		GameObject child2 = new GameObject("boundsChild2", new Vector2(0, 0), this.canvasGameObject);
+		RectTransform b2 = new RectTransform(new Vector2(-50, -50), new Vector2(50, 50));
+		//RectTransform b = new RectTransform(new Vector2(25));
+		child2.addComponent(b2);
+		this.addGameObject(child2);
 		
 		/*GameObject boundsChild1 = new GameObject(new Vector2(-750/2), boundsParent);
 		Bounds b2 = new Bounds(new Vector2(10));
