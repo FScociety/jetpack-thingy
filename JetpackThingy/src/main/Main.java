@@ -39,7 +39,6 @@ public class Main extends AbstractGame {
 	@Override
 	public void start() {
 		SceneManager.loadScene(inGame);
-		
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 		GameContainer.window.frame.setSize(size);
 	}

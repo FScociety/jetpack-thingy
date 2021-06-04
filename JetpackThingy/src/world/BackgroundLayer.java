@@ -31,19 +31,18 @@ public class BackgroundLayer {
 		this.d = d;
 		
 		this.depth = (float)(depth+1) / (depthSize+1);
+		
 	}
 	
 	public void calcSpace() {
-		float scale = 10;
-		
 		this.backgroundsSize = (int)Math.ceil(GameContainer.windowSize.x / imageSize.x / SceneManager.activeScene.defaultCamera.zoom)+3;
 		Logger.println(prefix, "Generated BackgroundLayer with size of " + this.backgroundsSize, 1);
 		start = new BackgroundElement(this, -this.backgroundsSize / 2 * this.imageSize.x, this.backgroundsSize-1);
 		
-		this.maxSpace = GameContainer.windowSize.x + this.imageSize.x/2 * scale;
-		this.maxSpace /= imageSize.x*scale;
+		this.maxSpace = GameContainer.windowSize.x + this.imageSize.x/2;
+		this.maxSpace /= imageSize.x;
 		this.maxSpace = (float) Math.ceil(maxSpace);
-		this.maxSpace *= imageSize.x*scale;
+		this.maxSpace *= imageSize.x;
 	}
 	
 	public BufferedImage getNewImage() {
