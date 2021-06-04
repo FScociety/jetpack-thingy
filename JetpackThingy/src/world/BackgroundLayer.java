@@ -8,6 +8,7 @@ import engine.game.GameContainer;
 import engine.io.Logger;
 import engine.math.Vector2;
 import engine.scenes.SceneManager;
+import player.PlayerController;
 
 public class BackgroundLayer {
 	
@@ -26,21 +27,23 @@ public class BackgroundLayer {
 	public BackgroundLayer(Drawing d, BufferedImage images[], int depth, int depthSize) {
 		this.images = images;
 		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
+		this.imageSize.multiply(5);
 		this.d = d;
 		
 		this.depth = (float)(depth+1) / (depthSize+1);
-
 	}
 	
 	public void calcSpace() {
+		float scale = 10;
+		
 		this.backgroundsSize = (int)Math.ceil(GameContainer.windowSize.x / imageSize.x / SceneManager.activeScene.defaultCamera.zoom)+3;
 		Logger.println(prefix, "Generated BackgroundLayer with size of " + this.backgroundsSize, 1);
 		start = new BackgroundElement(this, -this.backgroundsSize / 2 * this.imageSize.x, this.backgroundsSize-1);
 		
-		this.maxSpace = GameContainer.windowSize.x + this.imageSize.x/2;
-		this.maxSpace /= imageSize.x;
+		this.maxSpace = GameContainer.windowSize.x + this.imageSize.x/2 * scale;
+		this.maxSpace /= imageSize.x*scale;
 		this.maxSpace = (float) Math.ceil(maxSpace);
-		this.maxSpace *= imageSize.x;
+		this.maxSpace *= imageSize.x*scale;
 	}
 	
 	public BufferedImage getNewImage() {
@@ -54,8 +57,7 @@ public class BackgroundLayer {
 	}
 	
 	public void update() {
-		System.out.println(this.depth);
-		this.start.move((float)GameContainer.dt*1000 * this.depth);
+		this.start.move((float)GameContainer.dt*1000 * this.depth * PlayerController.velX);
 	}
 	
 	public void render() {
