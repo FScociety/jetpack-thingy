@@ -1,4 +1,4 @@
-package world;
+package world.background;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -9,21 +9,22 @@ import javax.imageio.ImageIO;
 
 import engine.game.GameContainer;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
+import engine.io.Logger;
 import engine.math.Vector2;
+import engine.scenes.SceneManager;
+import tools.worldlayers.MovingLayer;
 
 public class ParalaxBackground extends GameBehaviour {
 	
 	private BufferedImage images[];
 	
-	public BackgroundLayer bgl[];
+	public MovingLayer bgl[];
 	public int size;
 	public Vector2 imageSize;
 	
 	
-	public ParalaxBackground(String path, int size, Vector2 imageSize) {
+	public ParalaxBackground(String path, int size) {
 		this.size = size;
-		this.imageSize = imageSize;
-		
 		
 		images = new BufferedImage[7];
 		for (int i = 0; i < 6; i++) {
@@ -37,33 +38,33 @@ public class ParalaxBackground extends GameBehaviour {
 	}
 	
 	public void start() {
-		bgl = new BackgroundLayer[size];
+		bgl = new MovingLayer[size];
+		
+		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
+		float aspectRatio = this.imageSize.x / this.imageSize.y;
+		this.imageSize.y = GameContainer.windowSize.y;
+		this.imageSize.x = this.imageSize.y * aspectRatio;
+		
+		System.out.println(this.imageSize);
 		
 		for (int i = 0; i < size; i++) {
-			BufferedImage[] testarray = {images[i]};
-			bgl[i] = new BackgroundLayer(this.d, testarray, i, size);
-			bgl[i].calcSpace();
+			
+			BackgroundData startingData = new BackgroundData(images[i]);
+			bgl[i] = new MovingLayer(startingData, imageSize, -250, ((float)i+1) / (1+size));
+			bgl[i].add(bgl[i].getAmoutOverScreen());
+			startingData.parent = bgl[i].start;
 		}
 	}
 	
 	public void update() {
-		for (int i = 0; i < size; i++) {
+		for (int i = 0; i < this.bgl.length; i++) {
 			bgl[i].update();
 		}
 	}
 	
 	public void render() {
-		for (int i = 0; i < bgl.length; i++) {
+		for (int i = 0; i < this.bgl.length; i++) {
 			bgl[i].render();
-			/*for (int j = 0; j < bgl[i].backgroundsSize; j++) {
-				float x = bgl[i].backgrounds[j];
-				
-				this.d.setColor(Color.WHITE);
-				this.d.drawRect(new Vector2(x, 0), new Vector2(384*2, 384*2));
-				
-				//this.d.drawImage(images[i], new Vector2(x - (bgl[i].backgrounds.size())/2*imageSize.x, -imageSize.y/2), new Vector2(imageSize.x+1, imageSize.y+1));
-			}*/
 		}
 	}
-
 }

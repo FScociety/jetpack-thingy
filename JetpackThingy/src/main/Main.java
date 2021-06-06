@@ -15,11 +15,12 @@ import engine.scenes.Scene;
 import engine.scenes.SceneManager;
 import scenes.GlobalTestScene;
 import scenes.InGameScene;
+import scenes.NewTest;
 import scenes.UITest;
 
 public class Main extends AbstractGame {
 	
-	Scene inGame, UiTest, globalTest;
+	Scene inGame, UiTest, globalTest, newTest;
 	
 	public static void main(String[] args) {
 		GameContainer gc = new GameContainer();	
@@ -34,13 +35,25 @@ public class Main extends AbstractGame {
 		UiTest = new UITest();
 		
 		globalTest = new GlobalTestScene();
+		
+		newTest = new NewTest();
 	}
 
 	@Override
 	public void start() {
-		SceneManager.loadScene(inGame);
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
 		GameContainer.window.frame.setSize(size);
+		
+		//Safety cause multithreading
+		//Not a good solution but it works
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		SceneManager.loadScene(inGame);
 	}
 	
 	public void update() {
