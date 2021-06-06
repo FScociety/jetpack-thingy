@@ -77,28 +77,10 @@ public class PlayerController extends GameBehaviour {
 	}
 	
 	public void render() {
-		/*this.d.setColor(Color.WHITE);
-		this.d.fillRect(new Vector2(sizeY));*/
+		this.d.setColor(Color.WHITE);
+		this.d.drawRect(new Vector2(sizeY));
 		
 		this.d.drawImage(testImage, new Vector2(-sizeY/4, -sizeY/2), new Vector2(sizeY/2, sizeY));
 	}
 	
-	//Schule version
-	
-	/*public PlayerController(String name) {
-		this.name = name;
-		PlayerController.players.add(this);
-	}
-	
-	public static ArrayList<PlayerController> players = new ArrayList<PlayerController>();
-	private String name;
-	
-	public static PlayerController getPlayer(String name) {
-		for (PlayerController pc : players) {
-			if (pc.name == name) {
-				return pc;
-			}
-		}
-		return null;
-	}*/
 }

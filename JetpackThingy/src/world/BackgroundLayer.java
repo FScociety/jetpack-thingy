@@ -9,12 +9,14 @@ import engine.io.Logger;
 import engine.math.Vector2;
 import engine.scenes.SceneManager;
 import player.PlayerController;
+import tools.movingList.MovingElement;
+import tools.movingList.MovingList;
 
-public class BackgroundLayer {
+public class BackgroundLayer extends MovingList {
 	
 	public String prefix = "BackgroundLayer";
 	
-	public BackgroundElement start;
+	//public MovingElement start;
 	public Drawing d;
 	public int backgroundsSize;
 	
@@ -37,7 +39,8 @@ public class BackgroundLayer {
 	public void calcSpace() {
 		this.backgroundsSize = (int)Math.ceil(GameContainer.windowSize.x / imageSize.x / SceneManager.activeScene.defaultCamera.zoom)+3;
 		Logger.println(prefix, "Generated BackgroundLayer with size of " + this.backgroundsSize, 1);
-		start = new BackgroundElement(this, -this.backgroundsSize / 2 * this.imageSize.x, this.backgroundsSize-1);
+		//start = new BackgroundElement(this, -this.backgroundsSize / 2 * this.imageSize.x, this.backgroundsSize-1);
+		start = new MovingElement(this, new BackgroundData(-this.backgroundsSize / 2 * this.imageSize.x), this.backgroundsSize-1);
 		
 		this.maxSpace = GameContainer.windowSize.x + this.imageSize.x/2;
 		this.maxSpace /= imageSize.x;
@@ -56,7 +59,7 @@ public class BackgroundLayer {
 	}
 	
 	public void update() {
-		this.start.move((float)GameContainer.dt*1000 * this.depth * PlayerController.velX);
+		this.start.data.move((float)GameContainer.dt*1000 * this.depth * PlayerController.velX);
 	}
 	
 	public void render() {
