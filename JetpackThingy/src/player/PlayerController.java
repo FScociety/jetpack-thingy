@@ -11,12 +11,14 @@ import javax.imageio.ImageIO;
 import engine.game.GameContainer;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
+import world.coins.CoinController;
+import world.coins.CoinData;
 
 public class PlayerController extends GameBehaviour {
 	
 	public static PlayerController p;
 	
-	public static int borders = 350;
+	public static int borders = 450;
 	
 	int sizeY = 200;
 	
@@ -26,10 +28,16 @@ public class PlayerController extends GameBehaviour {
 	public static float velX;
 	float forceY = 9.81f;
 	
+	public static float movingSpeed = 1;
+	
 	private BufferedImage testImage;
 	
-	public PlayerController() {
+	private CoinController cc;
+	
+	public PlayerController(CoinController cc) {
 		this.p = this;
+		
+		this.cc = cc;
 		
 		try {
 			 this.testImage = ImageIO.read(getClass().getResourceAsStream("/player/jetpackwithplayer.png"));
@@ -73,6 +81,18 @@ public class PlayerController extends GameBehaviour {
 			this.velX = 2;
 		} else {
 			this.velX = 1;
+		}
+		
+		
+		
+		CoinData middle = ((CoinData)cc.coinList.get(21).data);
+		if (middle != null) {
+			
+			//float posY = this.gameObject.getTransformWithCaution().position.y;
+			posY /= cc.coinSize;
+			posY += CoinData.coinSize/2;
+			
+			middle.remove((int) posY);
 		}
 	}
 	

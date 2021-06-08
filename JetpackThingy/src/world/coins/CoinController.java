@@ -1,17 +1,29 @@
 package world.coins;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
 import engine.math.Vector2;
 import tools.worldlayers.MovingLayer;
 
 public class CoinController extends GameBehaviour {
 	
-	MovingLayer coinList;
+	public MovingLayer coinList;
+	
+	BufferedImage coin;
+	
+	public int coinSize = 50;
 	
 	public void start() {
-		CoinData defaultCoin = new CoinData();
-		coinList = new MovingLayer(defaultCoin, new Vector2(50), -250, 0.2f);
-		coinList.add(coinList.getAmoutOverScreen());
+		try { this.coin = ImageIO.read(getClass().getResourceAsStream("/coins/coin.png"));
+		} catch (IOException e) {}
+		
+		CoinData defaultCoin = new CoinData(this.coin);
+		coinList = new MovingLayer(defaultCoin, new Vector2(coinSize), -1000, 1);
+		coinList.addInstant(40);
 		defaultCoin.parent = coinList.start;
 	}
 	

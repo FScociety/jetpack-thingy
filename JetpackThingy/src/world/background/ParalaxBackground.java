@@ -42,16 +42,13 @@ public class ParalaxBackground extends GameBehaviour {
 		
 		this.imageSize = new Vector2(this.images[0].getWidth(), this.images[0].getHeight());
 		float aspectRatio = this.imageSize.x / this.imageSize.y;
-		this.imageSize.y = GameContainer.windowSize.y;
+		this.imageSize.y *= 4;
 		this.imageSize.x = this.imageSize.y * aspectRatio;
 		
-		System.out.println(this.imageSize);
-		
 		for (int i = 0; i < size; i++) {
-			
 			BackgroundData startingData = new BackgroundData(images[i]);
-			bgl[i] = new MovingLayer(startingData, imageSize, -250, ((float)i+1) / (1+size));
-			bgl[i].add(bgl[i].getAmoutOverScreen());
+			bgl[i] = new MovingLayer(startingData, imageSize, -1000, ((float)i+1) / (1+size));
+			bgl[i].addInstant(3);
 			startingData.parent = bgl[i].start;
 		}
 	}

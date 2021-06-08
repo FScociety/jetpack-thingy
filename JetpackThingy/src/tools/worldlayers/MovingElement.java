@@ -9,7 +9,7 @@ import engine.scenes.SceneManager;
 
 public class MovingElement {
 	public  MovingLayer parent;
-	private MovingData data;
+	public  MovingData data;
 	private MovingElement follower;
 	
 	public boolean visible = true;
@@ -40,6 +40,17 @@ public class MovingElement {
 			return this;
 		} else {
 			return this.follower.getEnd();
+		}
+	}
+	
+	public MovingElement get(int i) {
+		if (i > 0) {
+			if (this.follower != null) {
+				return this.follower.get(i-1);
+			}
+			return null;
+		} else {
+			return this;
 		}
 	}
 	
@@ -77,19 +88,19 @@ public class MovingElement {
 			this.position -= speed;
 		}
 			
-			//Reached the end
-			if (this.position < (-GameContainer.windowSize.x - this.parent.elementBounds.x) * SceneManager.activeScene.defaultCamera.zoom) {
-				if (this.parent.removeElements) {
-					//Slowly vanish objects, which are out of view
-					this.visible = false;
-				} else {
-					//Move to end for looping
-					this.moveToEnd();
-					
-					//Generate new DATA
-					this.data.generateNew();
-				}
+		//Reached the end
+		if (this.position < this.parent.positionBounds - this.parent.elementBounds.x) {
+			if (this.parent.removeElements) {
+				//Slowly vanish objects, which are out of view
+				this.visible = false;
+			} else {
+				//Move to end for looping
+				this.moveToEnd();
+				
+				//Generate new DATA
+				this.data.generateNew();
 			}
+		}
 			
 		if (this.follower != null) {
 			this.follower.move(speed);

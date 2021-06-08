@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JFrame;
+
 import engine.game.AbstractGame;
 import engine.game.GameContainer;
+import engine.game.Window;
 import engine.gameobjects.GameObject;
 import engine.gameobjects.gamebehaviour.builtin.camera.CameraController;
 import engine.gameobjects.gamebehaviour.type.GameBehaviour;
@@ -23,8 +26,9 @@ public class Main extends AbstractGame {
 	Scene inGame, UiTest, globalTest, newTest;
 	
 	public static void main(String[] args) {
-		GameContainer gc = new GameContainer();	
-		gc.setSize(new Vector2(500, 500));
+		GameContainer gc = new GameContainer(new Vector2(720, 405));	
+        //Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+		//gc.setSize(new Vector2((float)size.getWidth(), (float)size.getHeight()));
 		gc.setGame(new Main());
 		gc.start();
 	}
@@ -41,24 +45,10 @@ public class Main extends AbstractGame {
 
 	@Override
 	public void start() {
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-		GameContainer.window.frame.setSize(size);
-		
-		//Safety cause multithreading
-		//Not a good solution but it works
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		SceneManager.loadScene(inGame);
 	}
 	
 	public void update() {
-		this.inGame.defaultCamera.zoom = GameContainer.windowSize.y / 500 / 2;
-		
 		if (GameContainer.input.isKey(KeyEvent.VK_ESCAPE)) {
 			System.exit(0);
 		}
