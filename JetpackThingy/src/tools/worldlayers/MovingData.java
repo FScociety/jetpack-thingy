@@ -1,16 +1,12 @@
 package tools.worldlayers;
 
-public abstract class MovingData {
+public class MovingData {
 	
 	public MovingElement parent;
 	
-	public MovingData() {
-		
-	}
+	public MovingData getNew() {return null;}
 	
-	public abstract MovingData getNew();
+	public void generateNew() {}
 	
-	public abstract void generateNew();
-	
-	public abstract void render();
+	public void render() {}
 }

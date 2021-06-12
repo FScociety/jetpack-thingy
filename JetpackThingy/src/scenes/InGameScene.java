@@ -26,7 +26,7 @@ public class InGameScene extends Scene {
 		this.defaultCameraObject.addComponent(new CameraController(this.defaultCamera));
 		
 		GameObject background = new GameObject(new Vector2(0), true);
-		background.addComponent(new ParalaxBackground("/backgrounds/sunshine", 6));
+		background.addComponent(new ParalaxBackground("dune", 6));
 		this.addGameObject(background);
 		
 		GameObject coins = new GameObject(new Vector2(0), true);

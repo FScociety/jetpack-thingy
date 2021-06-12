@@ -20,7 +20,7 @@ public class PlayerController extends GameBehaviour {
 	
 	public static int borders = 450;
 	
-	int sizeY = 200;
+	int sizeY = 200; 
 	
 	boolean ceilCollision, floorCollision;
 	
@@ -84,7 +84,7 @@ public class PlayerController extends GameBehaviour {
 		}
 		
 		
-		
+		/*
 		CoinData middle = ((CoinData)cc.coinList.get(21).data);
 		if (middle != null) {
 			
@@ -94,6 +94,7 @@ public class PlayerController extends GameBehaviour {
 			
 			middle.remove((int) posY);
 		}
+		*/
 	}
 	
 	public void render() {

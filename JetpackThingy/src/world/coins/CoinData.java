@@ -2,6 +2,7 @@ package world.coins;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.util.logging.Logger;
 
 import engine.game.GameContainer;
 import engine.math.Vector2;
@@ -11,9 +12,11 @@ public class CoinData extends MovingData {
 	
 	public static int coinSize = 15;
 	
-	boolean coins[] = new boolean[coinSize];
+	int coins[] = new int[coinSize];
 	
 	private BufferedImage coin;
+	
+	public Logger log;
 	
 	public CoinData(BufferedImage coin) {
 		this.coin = coin;
@@ -27,34 +30,30 @@ public class CoinData extends MovingData {
 
 	@Override
 	public void generateNew() {
-		for (int i = 0; i < coins.length; i++) {
-			coins[i] = Math.random() < 0.5f ? true : false;
+		if (CoinController.cc.activeCoinPattern != null) { 
+			this.coins = CoinController.cc.activeCoinPattern.getLine();
 		}
 	}
 
 	@Override
 	public void render() {
-		for (int i = 0; i < coins.length; i++) {
-			/*GameContainer.d.setColor(Color.YELLOW);
-			GameContainer.d.drawRect(new Vector2(this.parent.position, (i-((float)this.coins.length)/2) * this.parent.parent.elementBounds.y), new Vector2(this.parent.parent.elementBounds.y));*/
-			if (coins[i] == true) {
-				GameContainer.d.drawImage(this.coin, new Vector2(this.parent.position, (i-((float)this.coins.length)/2) * this.parent.parent.elementBounds.y), new Vector2(this.parent.parent.elementBounds.y));
+		if (this.coins != null) {
+			for (int i = 0; i < coins.length; i++) {
+				if (coins[i] == 1) {
+					GameContainer.d.drawImage(this.coin, new Vector2(this.parent.position, (i-((float)this.coins.length)/2) * this.parent.parent.elementBounds.y), new Vector2(this.parent.parent.elementBounds.y));
+				}
 			}
 		}
 	}
 	
 	public void remove(int startingY) {
+		System.out.println("Tryed to remove");
+
 		if (startingY > coins.length-3) {
 			startingY = coins.length-3;
 		}
 		for (int i = 0; i < 3; i++) {
-			coins[i + startingY] = false;
-		}
-	}
-	
-	public void blink() {
-		for (int i = 0; i < coins.length; i++) {
-			coins[i] = true;
+			coins[i + startingY] = 0;
 		}
 	}
 }	

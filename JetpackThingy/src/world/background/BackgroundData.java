@@ -17,6 +17,7 @@ public class BackgroundData extends MovingData {
 	@Override
 	public void render() {
 		GameContainer.d.drawImage(img, new Vector2(this.parent.position, -this.parent.parent.elementBounds.y/2+1), Vector2.add(this.parent.parent.elementBounds, 2));
+		//GameContainer.d.drawImageFast(img, new Vector2(this.parent.position, -this.parent.parent.elementBounds.y/2+1));
 	}
 
 	@Override
