@@ -84,7 +84,7 @@ public class PlayerController extends GameBehaviour {
 		}
 		
 		
-		/*
+		
 		CoinData middle = ((CoinData)cc.coinList.get(21).data);
 		if (middle != null) {
 			
@@ -94,7 +94,7 @@ public class PlayerController extends GameBehaviour {
 			
 			middle.remove((int) posY);
 		}
-		*/
+		
 	}
 	
 	public void render() {

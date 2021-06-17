@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="rsc"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/2D-Engine"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EngineRewrite"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

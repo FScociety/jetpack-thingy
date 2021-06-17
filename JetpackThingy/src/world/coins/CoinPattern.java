@@ -54,15 +54,17 @@ public class CoinPattern {
 				this.pattern[x][y] = elements.get(y)[x];
 			}
 		}
+		
+		Logger.warn("Loaded one pattern");
 	}
 	
-	private void refresh() {
+	public void refresh() {
 		this.posCount = 0;
 	}
 	
 	public int[] getLine() {
 		this.posCount++;
-		if (this.posCount-1 < this.pattern.length) {
+		if (this.posCount <= this.pattern.length) {
 			int[] stripe = new int[CoinData.coinSize];
 			
 			for (int i = 0; i < this.pattern[0].length; i++) {
@@ -70,16 +72,13 @@ public class CoinPattern {
 			}
 			
 			return stripe;
-			//return pattern[this.posCount-1];
 		} else {
-			this.refresh();
-			CoinPattern newPattern = CoinController.cc.newPattern();
-			if (newPattern != null) {
-				return newPattern.getLine();
-			} else {
-				return null;
-			}
+			return null;
 		}
+	}
+	
+	public boolean isFinished() {
+		return this.posCount > this.pattern.length;
 	}
 	
 	public void newYOffset() {
