@@ -146,4 +146,7 @@ class CONNECTION {
 			System.out.println("You are not logged in!");
 		}
 	}
+	public boolean get_logged_in() {
+		return logged_in;
+	}
 }
